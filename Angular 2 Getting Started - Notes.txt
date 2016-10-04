@@ -10,7 +10,7 @@ Modules (export, import)will be automatically added to the index.html file with 
 To create an Angular2 component
 import { Component } from 'angular2/core'; 	// load Component function from angular core module
 @Component({
-	selector: 'pm-app', 	// defines a component's directive name, which can be used like a tag in the html (ex: "<body><pm-app></body>")
+	selector: 'pm-app', 	// defines a component's directive name, which can be used like a tag in the html (ex: "<body><pm-app></pm-app></body>")
 	template: '<h1>Hello {{name}}</h1>' 	// a component must have a template which displays html on the page
 })
 export class AppComponent{
