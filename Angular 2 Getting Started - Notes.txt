@@ -1,4 +1,18 @@
 
-In the root folder of the project (where the project.json file is), run the "npm install" in to install all the dependencies.
+In the root folder of the project (where the project.json file is), 
+ + Run "npm install" in to install all the dependencies.
+ + Run "npm start" to fun the start script which start the server and add watch mode for code changes to see the changes immediately 
 
+By convention the root component of an application is named AppComponent
 
+Modules (export, import)will be automatically added to the index.html file with SystemJS
+
+To create an Angular2 component
+import { Component } from 'angular2/core'; 	// load Component function from angular core module
+@Component({
+	selector: 'pm-app', 	// defines a component's directive name, which can be used like a tag in the html (ex: "<body><pm-app></pm-app></body>")
+	template: '<h1>Hello {{name}}</h1>' 	// a component must have a template which displays html on the page
+})
+export class AppComponent{
+	name: string = "Tai Le"
+}
