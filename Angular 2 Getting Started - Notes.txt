@@ -1,5 +1,4 @@
 
-In the root folder of the project (where the project.json file is), 
- + Run "npm install" in to install all the dependencies.
- + Run "npm start" to fun the start script which start the server and add watch mode for code changes to see the changes immediately 
+In the root folder of the project (where the project.json file is), run the "npm install" in to install all the dependencies.
+
 
