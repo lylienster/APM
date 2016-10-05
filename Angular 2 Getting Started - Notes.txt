@@ -7,7 +7,7 @@ By convention the root component of an application is named AppComponent
 
 Modules (export, import)will be automatically added to the index.html file with SystemJS
 
-To create an Angular2 component
++++ To create an Angular2 component +++
 import { Component } from 'angular2/core'; 	// load Component function from angular core module
 @Component({
 	selector: 'pm-app', 	// defines a component's directive name, which can be used like a tag in the html (ex: "<body><pm-app></pm-app></body>")
@@ -16,3 +16,22 @@ import { Component } from 'angular2/core'; 	// load Component function from angu
 export class AppComponent{
 	name: string = "Tai Le"
 }
+
+
++++ To use url for the template +++
+@Component({
+    selector : 'pm-products',
+    templateUrl : 'app/products/product-list.component.html' 		// Use templateUrl instead of template
+})
+
++++ To use a component as a directive inside another component
+1) Add the directive of the component we want to use inside of outter component's template
+2) Add the component name to the the 'directives' array of @Component 
+3) Import the component
+Ex:
+import { ProductListComponent} from './products/product-list.component' 	// (1)
+@Component({	
+	selector : 'pm-app',
+	template: '<div><pm-products></pm-products</div>' 						// (2)
+	directives: [ProductListComponent]										// (3)
+})
