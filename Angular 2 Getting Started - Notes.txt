@@ -24,6 +24,7 @@ export class AppComponent{
     templateUrl : 'app/products/product-list.component.html' 		// Use templateUrl instead of template
 })
 
+
 +++ To use a component as a directive inside another component
 1) Add the directive of the component we want to use inside of outter component's template
 2) Add the component name to the the 'directives' array of @Component 
@@ -35,3 +36,7 @@ import { ProductListComponent} from './products/product-list.component' 	// (1)
 	template: '<div><pm-products></pm-products</div>' 						// (2)
 	directives: [ProductListComponent]										// (3)
 })
+
++ Property binding - one way binding, from the component class's property to the target element's property
+Ex: <img [src]='product.imageUrl'> 		// property binding
+	<img src={{product.imageUrl}}> 		// interpolation
