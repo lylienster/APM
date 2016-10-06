@@ -40,3 +40,9 @@ import { ProductListComponent} from './products/product-list.component' 	// (1)
 + Property binding - one way binding, from the component class's property to the target element's property
 Ex: <img [src]='product.imageUrl'> 		// property binding
 	<img src={{product.imageUrl}}> 		// interpolation
+	
+	
++ Event binding - binds a event to an expression, often the component's method
+Ex: <button (click)='toggleImage()'>  	// notice events use (), whereas properties use []	
+	
+	
