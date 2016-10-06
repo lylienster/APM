@@ -44,5 +44,10 @@ Ex: <img [src]='product.imageUrl'> 		// property binding
 	
 + Event binding - binds a event to an expression, often the component's method
 Ex: <button (click)='toggleImage()'>  	// notice events use (), whereas properties use []	
+
++ Two-way binding 
+Ex: <input [(ngModel)]='listFliter'>
+
++ Pipes tranform bound properties before they're displayed
 	
 	
