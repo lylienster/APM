@@ -70,3 +70,38 @@ export interface IProduct{
 	templateUrl: 'app/products/product-list.component.html',
 	styleUrls: ['app/products/product-list.component.css']  // using style sheets
 })
+
++ To use Angular's lifecycle hooks, implement the component with Angular's lifecycle interfaces: OnInit, OnChanges, and OnDestroy
+Ex:
+import { Component, OnInit } from 'angular2/core';
+@Component({
+	...
+})
+export class ProductListComponent implements OnInit{
+	pageTitle: string = 'Product List';
+	ngOnInit(): void{
+		console.log('In OnInit');
+	}
+}
+
+
++ To build custom pipe 
+import { Pipe, PipeTransform } from 'angular2/core' 	
+@Pipe({	
+	name: 'productFilter'	// name of the pipe used in the template					
+})
+export class ProductFilterPipe implements PipeTransform{
+	transform(value: IProduct[], args: string[]) : IProduct(){  
+	
+	}
+	
+} // 'value' is the array the gets passed in, 'args' is the arguments we use to perform the tranformation
+
++ To use the custom pipe
+import { ProductFilterPipe } from './product-filter.pipe'; 
+@Component({
+	selector: 'pm-product',
+	templateUrl: 'app/products/product-list.component.html',
+	pipes: [ProductFilterPipe]
+})
+export class ProductListComponent{}
