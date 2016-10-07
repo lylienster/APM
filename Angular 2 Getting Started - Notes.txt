@@ -49,5 +49,59 @@ Ex: <button (click)='toggleImage()'>  	// notice events use (), whereas properti
 Ex: <input [(ngModel)]='listFliter'>
 
 + Pipes tranform bound properties before they're displayed
+
++ Define an interface to specify custom types. Import the interface to use it
+Ex: 
+export interface IProduct{
+	productId: number;
+	productName: string;
+	calculateDiscount(percent: number): number;
+}
 	
++ To encapsulate component styles (this will apply to the component's template and won't leak out to other parts of the application)
+@Component({
+	selector: 'pm-product',
+	templateUrl: 'app/products/product-list.component.html',
+	styles: ['thead {color: #337AB7;}'] 					// styles
+})	
+
+@Component({
+	selector: 'pm-product',
+	templateUrl: 'app/products/product-list.component.html',
+	styleUrls: ['app/products/product-list.component.css']  // using style sheets
+})
+
++ To use Angular's lifecycle hooks, implement the component with Angular's lifecycle interfaces: OnInit, OnChanges, and OnDestroy
+Ex:
+import { Component, OnInit } from 'angular2/core';
+@Component({
+	...
+})
+export class ProductListComponent implements OnInit{
+	pageTitle: string = 'Product List';
+	ngOnInit(): void{
+		console.log('In OnInit');
+	}
+}
+
+
++ To build custom pipe 
+import { Pipe, PipeTransform } from 'angular2/core' 	
+@Pipe({	
+	name: 'productFilter'	// name of the pipe used in the template					
+})
+export class ProductFilterPipe implements PipeTransform{
+	transform(value: IProduct[], args: string[]) : IProduct(){  
 	
+	}
+	
+} // 'value' is the array the gets passed in, 'args' is the arguments we use to perform the tranformation
+
++ To use the custom pipe
+import { ProductFilterPipe } from './product-filter.pipe'; 
+@Component({
+	selector: 'pm-product',
+	templateUrl: 'app/products/product-list.component.html',
+	pipes: [ProductFilterPipe]
+})
+export class ProductListComponent{}
