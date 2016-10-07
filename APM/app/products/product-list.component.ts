@@ -6,6 +6,10 @@ import { Component } from 'angular2/core';
 })
 export class ProductListComponent{
     pageTitle : string = "Product List";
+    imageWidth : number = 50;
+    imageMargin : number = 2;
+    showImage : boolean = false;
+    listFilter : string = "cart";
     products: any[] = [ {
         "productId": 2,
         "productName": "Garden Cart",
@@ -26,4 +30,8 @@ export class ProductListComponent{
         "starRating": 4.8,
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
     }];
+
+    toggleImage(){
+        this.showImage = !this.showImage;
+    }
 }
