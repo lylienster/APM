@@ -49,5 +49,13 @@ Ex: <button (click)='toggleImage()'>  	// notice events use (), whereas properti
 Ex: <input [(ngModel)]='listFliter'>
 
 + Pipes tranform bound properties before they're displayed
+
++ Define an interface to specify custom types
+Ex: 
+export interface IProduct{
+	productId: number;
+	productName: string;
+	calculateDiscount(percent: number): number;
+}
 	
 	
