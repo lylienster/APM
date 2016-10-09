@@ -105,3 +105,14 @@ import { ProductFilterPipe } from './product-filter.pipe';
 	pipes: [ProductFilterPipe]
 })
 export class ProductListComponent{}
+
+
++ For nested component
+ - Use Input decorator on the property in the nested component class that wants the value passed from parent component
+ export class StarComponent{
+	@Input rating: number;
+	starWidth: number;
+ }
+ - To pass the value to nested component, use property binding
+ <ai-star [rating]='product.starRating'></ai-star>
+ 
