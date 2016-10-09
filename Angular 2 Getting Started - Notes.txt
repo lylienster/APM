@@ -105,3 +105,65 @@ import { ProductFilterPipe } from './product-filter.pipe';
 	pipes: [ProductFilterPipe]
 })
 export class ProductListComponent{}
+
++ For nested component
+ - Use Input decorator on the property in the nested component class that wants the value passed from parent component
+ export class StarComponent{
+	@Input() rating: number;
+	starWidth: number;
+ }
+ - To pass the value to nested component, use property binding
+ <ai-star [rating]='product.starRating'></ai-star>
+ 
+ - To pass data from nested component to parent component, use the decorator Output on an event property
+ Inside the nested component:
+ export class StarComponent{
+	@Input() rating: number;
+	@Output() notify: EventEmitter<string> = new EventEmitter<string>();
+	
+	onClick(){
+		this.notify.emit("clicked!");		// when user click the stars, emit the event to parent component
+	}
+ }
+ Inside the parent component's html
+  <ai-star [rating]='product.starRating'	// this is from parent to nested
+	(notify)='onNotify($event)'				// this is from nested to parent
+  ></ai-star>
+ Inside the parent component:
+ export class ProductListComponent{
+	onNotify(message: string): void{} 		// handle the event
+ }
+ 
+
++ To create Services and use Dependency Injection
+1) Create the service
+import { Injectable } from 'angular2/core';
+@Injectable()
+export class ProductService{
+	getProducts(): any[]{
+		...
+	}
+}
+
+2) Register the service
+import { ProductService } from './products/product.service'; 
+@Component({
+    providers: [ProductService]			// register service here 
+})
+export class AppComponent{
+    pageTitle : string = "Acme Product Management";
+}
+
+3) Use Dependency Injection to use the service
+import { ProductService } from "./product.service"			// import service
+@Component({
+	...
+})
+export class ProductListComponent implements OnInit{
+    constructor (private _productService: ProductService){	// use Dependency Injection
+    }
+
+    ngOnInit(): void {
+        this.products = this._productService.getProducts();	// use a method from the service
+    }
+}
