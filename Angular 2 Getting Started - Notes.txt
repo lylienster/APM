@@ -106,7 +106,6 @@ import { ProductFilterPipe } from './product-filter.pipe';
 })
 export class ProductListComponent{}
 
-
 + For nested component
  - Use Input decorator on the property in the nested component class that wants the value passed from parent component
  export class StarComponent{
@@ -135,8 +134,36 @@ export class ProductListComponent{}
 	onNotify(message: string): void{} 		// handle the event
  }
  
- 
- 
- 
- 
- 
+
++ To create Services and use Dependency Injection
+1) Create the service
+import { Injectable } from 'angular2/core';
+@Injectable()
+export class ProductService{
+	getProducts(): any[]{
+		...
+	}
+}
+
+2) Register the service
+import { ProductService } from './products/product.service'; 
+@Component({
+    providers: [ProductService]			// register service here 
+})
+export class AppComponent{
+    pageTitle : string = "Acme Product Management";
+}
+
+3) Use Dependency Injection to use the service
+import { ProductService } from "./product.service"			// import service
+@Component({
+	...
+})
+export class ProductListComponent implements OnInit{
+    constructor (private _productService: ProductService){	// use Dependency Injection
+    }
+
+    ngOnInit(): void {
+        this.products = this._productService.getProducts();	// use a method from the service
+    }
+}
