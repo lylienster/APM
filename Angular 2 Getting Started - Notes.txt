@@ -167,3 +167,7 @@ export class ProductListComponent implements OnInit{
         this.products = this._productService.getProducts();	// use a method from the service
     }
 }
+
+Notes: 
+ + Register the service at the root component if the service is used throughout the application. 
+ + Specific component if only that component uses the service
