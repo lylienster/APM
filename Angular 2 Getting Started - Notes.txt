@@ -182,3 +182,13 @@ Notes:
 6) Create a method for each http request
 	- Use map operator to tranform to a JSON object 
 7) In the class the needs data from data service, call the subscribe method to subscribe to the Observable and provide a function to execute when the Observale emit an item
+
+
++ To configure Routes
+import { RouteConfig } from 'angular2/router';
+import { WelcomeComponent } from 'welcome.component';
+import { ProductListComponent } from 'product-list.component';
+@RouteConfig([
+	{ path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true},
+	{ path: '/products', name: 'Products', component: ProductListComponent}
+])
