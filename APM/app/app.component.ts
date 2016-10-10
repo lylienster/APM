@@ -1,6 +1,6 @@
 import { Component } from 'angular2/core';
 
-import { HTTP_PROVIDDERS } from "angular2/http";
+import { HTTP_PROVIDERS } from "angular2/http";
 import "rxjs/Rx";   // load all features
 import { ProductListComponent } from './products/product-list.component';
 
@@ -14,7 +14,7 @@ import { ProductService } from './products/product.service';
         </div>
     `,
     directives: [ProductListComponent],
-    providers: [ProductService, HTTP_PROVIDDERS]		
+    providers: [ProductService, HTTP_PROVIDERS]		
 })
 export class AppComponent{
     pageTitle : string = "Acme Product Management";
