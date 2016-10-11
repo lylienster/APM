@@ -184,7 +184,17 @@ Notes:
 7) In the class the needs data from data service, call the subscribe method to subscribe to the Observable and provide a function to execute when the Observale emit an item
 
 
-+ To configure Routes
++ To use angular routing
+1) Include the Angular 2 router script
+2) Define the base element
+3) Register ROUTER_PROVIDERS
+4) Configure the routes in root component
+5) Tie routes to actions
+6) Place the View
+7) Pass parameters if needed
+
++ To configure Routes - decorate the component class with RouteConfig to configure the routings (4)
+In app.component.ts
 import { RouteConfig } from 'angular2/router';
 import { WelcomeComponent } from 'welcome.component';
 import { ProductListComponent } from 'product-list.component';
@@ -192,3 +202,31 @@ import { ProductListComponent } from 'product-list.component';
 	{ path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true},
 	{ path: '/products', name: 'Products', component: ProductListComponent}
 ])
+
++ To tie the route to an action, use routerLink directive, which ROUTER_DIRECTIVES needs to be imported (5)
+In app.component.ts
+import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from 'angular2/router'; 
+@Component({
+	selector: 'pm-app',
+	template: `<li><a [routerLink]="['Welcome']">Home</a></li>`,
+	directives: [ROUTER_DIRECTIVES],
+	providers: [ROUTER_PROVIDERS]
+})
+
++ To display the view of the routed component, use (6)
+<router-outlet></router-outlet>
+
++ To pass parameters from url (7)
+In app.component.ts - where we specify the routes
+{ path: '/products/:id', name: 'ProductDetail', component: ProductDetailComponent}
+
+In product-list.component.html - where we use the routerLink directive to generate the href for this component
+<a [routerLink]="['ProductDetail', {id: product.productId}]">
+	{{product.productName}}
+</a>
+
+In product-detail.component.ts - where we get the parameter value from the url
+import { RouteParams } from "angular2/router";
+constructor(private _routeParams: RouteParams){
+	console.log(this._routeParams.get("id"));
+}
