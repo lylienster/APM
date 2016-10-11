@@ -6,6 +6,7 @@ import { ROUTER_PROVIDERS, RouteConfig, ROUTER_DIRECTIVES } from "angular2/route
 import { ProductListComponent } from './products/product-list.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductService } from './products/product.service'; 
+import { ProductDetailComponent } from './products/product-detail.component'; 
 
 @Component({
     selector : "pm-app",
@@ -30,7 +31,8 @@ import { ProductService } from './products/product.service';
 })
 @RouteConfig([
 	{ path: '/welcome', name: 'Welcome', component: WelcomeComponent, useAsDefault: true},
-	{ path: '/products', name: 'Products', component: ProductListComponent}
+	{ path: '/products', name: 'Products', component: ProductListComponent},
+	{ path: '/product/:id', name: 'ProductDetail', component: ProductDetailComponent}
 ])
 export class AppComponent{
     pageTitle : string = "Acme Product Management";
