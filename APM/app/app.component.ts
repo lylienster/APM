@@ -20,9 +20,12 @@ import { ProductService } from './products/product.service';
                 </ul>
             </div>
         </nav>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
     </div>
     `,
-    directives: [ProductListComponent, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     providers: [ProductService, HTTP_PROVIDERS, ROUTER_PROVIDERS]		
 })
 @RouteConfig([
